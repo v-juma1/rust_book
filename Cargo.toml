@@ -2,4 +2,5 @@
 members=[
     "hello_world",
     "guessing_game",
+    "common_programming_concepts",
 ]
