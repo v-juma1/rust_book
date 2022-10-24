@@ -4,5 +4,5 @@
 
 ## 说明
 
-- **每个知识点对应一个binary crate,即src下的一个文件，用cargo namespace管理**
+- **每个知识点对应一个binary crate,即src下的一个文件，用cargo workspace管理**
 - **用cargo run --bin 文件夹名称（即binary crate name）的方式运行**
