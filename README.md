@@ -89,9 +89,9 @@ typora-copy-images-to: ./pics
 
 ### 深拷贝和浅拷贝
 
-浅拷贝：只复制stack上的数据引用，不复制heap上的数据本身：![截屏2022-10-31 09.57.40](https://tva1.sinaimg.cn/large/008vxvgGly1h7ogtm216lj30hk0h80tl.jpg)
+浅拷贝：只复制stack上的数据引用，不复制heap上的数据本身：![截屏2022-10-31 09.57.40](pics/008vxvgGly1h7ogtm216lj30hk0h80tl-20221101162228836.jpg)
 
-深拷贝：复制stack上的数据引用和heap上的数据：![截屏2022-10-31 09.58.19](https://tva1.sinaimg.cn/large/008vxvgGly1h7ogu4qvaij30hr0kb0tv.jpg)
+深拷贝：复制stack上的数据引用和heap上的数据：![截屏2022-10-31 09.58.19](pics/008vxvgGly1h7ogu4qvaij30hr0kb0tv.jpg)
 
 ### rust的所有权转移（move）
 
@@ -99,7 +99,7 @@ typora-copy-images-to: ./pics
 
 
 
-![截屏2022-10-31 09.58.02.png](https://pic1.58cdn.com.cn/nowater/webim/big/n_v21681327f398d431eb5ab147003fb04de.png)
+![截屏2022-10-31 09.58.02.png](pics/n_v21681327f398d431eb5ab147003fb04de-20221101162214849.png)
 
 
 
@@ -120,7 +120,7 @@ typora-copy-images-to: ./pics
 ### 引用的解释和规则
 
 - &：引用的表示符号，允许使用变量的值而不取得变量的所有权
-- 引用的本质（s作为s1的引用）：![截屏2022-10-31 12.59.46](https://tva1.sinaimg.cn/large/008vxvgGly1h7oguc3oi7j30ul0awmxv.jpg)
+- 引用的本质（s作为s1的引用）：![截屏2022-10-31 12.59.46](pics/008vxvgGly1h7oguc3oi7j30ul0awmxv.jpg)
 - 在同一个作用域内，只能满足下列条件中的一个，不能同时满足
   - 一个可变的引用
   - 任意数不可变的引用
@@ -138,6 +138,6 @@ typora-copy-images-to: ./pics
 
 ### 6、代码组织Package, Crate, Module
 
-- 层级结构：![截屏2022-11-01 15.31.22.png](https://pic5.58cdn.com.cn/nowater/webim/big/n_v25c68890e1ae04673a422b7ee48337f68.png)
+- 层级结构：![截屏2022-11-01 15.31.22.png](pics/n_v25c68890e1ae04673a422b7ee48337f68.png)
 - 组织规则：![截屏2022-11-01 15.43.21.png](pics/n_v209feb408034d47d09ec7c9e073acb2af.png)
 - 
