@@ -1,7 +1,3 @@
----
-typora-copy-images-to: ./pics
----
-
 # Rust book 学习笔记
 
 - **《The Rust Programming Language》或中文版《Rust权威指南》**
