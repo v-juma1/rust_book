@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: ./pics
+---
+
 # Rust book 学习笔记
 
 - **《The Rust Programming Language》或中文版《Rust权威指南》**
@@ -73,6 +77,7 @@
 
 - 函数或者代码块{}的最后一个表达式（不带分号，即；）即为函数或者代码块的返回值，语句（带分号）的返回值为空tuple，即（）
 - 也可以使用return返回，返回值必须在函数声明中指明类型
+- let 关键字只能在函数内部声明变量
 
 ## 3、变量所有权Ownership
 
@@ -124,3 +129,15 @@
   - &[..从开始到索引]
   - &[从索引到结束..]
   - &[..] 表示整个数据的切片
+
+
+
+## 4、结构体structs
+
+### 5、枚举和模式匹配
+
+### 6、代码组织Package, Crate, Module
+
+- 层级结构：![截屏2022-11-01 15.31.22.png](https://pic5.58cdn.com.cn/nowater/webim/big/n_v25c68890e1ae04673a422b7ee48337f68.png)
+- 组织规则：![截屏2022-11-01 15.43.21.png](pics/n_v209feb408034d47d09ec7c9e073acb2af.png)
+- 
