@@ -92,7 +92,11 @@
 
 复制stack上的引用，将之前的引用销毁（图中s1变灰色），不复制heap上的数据本身：
 
-![截屏2022-10-31 09.58.02](https://tva1.sinaimg.cn/large/008vxvgGly1h7ogu8wbt1j30hd0hk0tl.jpg)
+
+
+![截屏2022-10-31 09.58.02.png](https://pic1.58cdn.com.cn/nowater/webim/big/n_v21681327f398d431eb5ab147003fb04de.png)
+
+
 
 ### rust的copy和drop trait
 
