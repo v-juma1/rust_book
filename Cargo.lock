@@ -13,6 +13,10 @@ name = "common_programming_concepts"
 version = "0.1.0"
 
 [[package]]
+name = "enums_pattern_matching"
+version = "0.1.0"
+
+[[package]]
 name = "getrandom"
 version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"

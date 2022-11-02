@@ -5,4 +5,5 @@ members=[
     "common_programming_concepts",
     "ownership",
     "structs",
+    "enums_pattern_matching",
 ]
