@@ -6,4 +6,6 @@ members=[
     "ownership",
     "structs",
     "enums_pattern_matching",
+    "common_collection",
+    "error_handling",
 ]

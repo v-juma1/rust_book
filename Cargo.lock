@@ -9,11 +9,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "common_collection"
+version = "0.1.0"
+
+[[package]]
 name = "common_programming_concepts"
 version = "0.1.0"
 
 [[package]]
 name = "enums_pattern_matching"
+version = "0.1.0"
+
+[[package]]
+name = "error_handling"
 version = "0.1.0"
 
 [[package]]
