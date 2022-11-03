@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
 fn option_value() {
     //Option<T> 枚举的两个值Some(T)和None
     let x = Some(5);
