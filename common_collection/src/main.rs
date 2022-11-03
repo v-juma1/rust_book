@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
 use std::collections::HashMap;
 #[derive(Debug)]
 enum TableCell {
@@ -83,7 +85,7 @@ fn hashmap_example() {
     let v1 = vec!["math", "english"];
     let v2 = vec![1, 2, 3];
 
-    let mut m2: HashMap<_, _> = v1.iter().zip(v2.iter()).collect();
+    let m2: HashMap<_, _> = v1.iter().zip(v2.iter()).collect();
 
     //使用变量的引用不发生所有权的移动
     let mut m3 = HashMap::new();
