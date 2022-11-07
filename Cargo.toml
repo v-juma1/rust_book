@@ -9,4 +9,5 @@ members=[
     "common_collection",
     "error_handling",
     "generictypes_traits_lifetimes",
+    "auto_test",
 ]
