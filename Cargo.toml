@@ -8,4 +8,5 @@ members=[
     "enums_pattern_matching",
     "common_collection",
     "error_handling",
+    "generictypes_traits_lifetimes",
 ]
