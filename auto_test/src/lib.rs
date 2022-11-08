@@ -1,3 +1,6 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 pub fn add(left: i32, right: i32) -> i32 {
     if left > 0 && right > 0 {
         left + right

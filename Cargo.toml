@@ -10,4 +10,5 @@ members=[
     "error_handling",
     "generictypes_traits_lifetimes",
     "auto_test",
+    "mini_grep",
 ]
