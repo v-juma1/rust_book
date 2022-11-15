@@ -109,6 +109,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "stmart_pointer"
+version = "0.1.0"
+
+[[package]]
 name = "structs"
 version = "0.1.0"
 
