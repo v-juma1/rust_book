@@ -12,5 +12,6 @@ members=[
     "auto_test",
     "mini_grep",
     "closure_iterator",
-    "stmart_pointer"
+    "stmart_pointer",
+    "conurrent_parallel",
 ]
