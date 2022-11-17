@@ -15,4 +15,5 @@ members=[
     "stmart_pointer",
     "conurrent_parallel",
     "object_oriented",
+    "advanced_feature",
 ]
