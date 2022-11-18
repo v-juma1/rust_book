@@ -16,4 +16,5 @@ members=[
     "conurrent_parallel",
     "object_oriented",
     "advanced_feature",
+    "mini_webserver",
 ]

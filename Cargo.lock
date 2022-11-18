@@ -77,6 +77,10 @@ name = "mini_grep"
 version = "0.1.0"
 
 [[package]]
+name = "mini_webserver"
+version = "0.1.0"
+
+[[package]]
 name = "object_oriented"
 version = "0.1.0"
 
