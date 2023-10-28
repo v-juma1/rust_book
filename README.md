@@ -341,7 +341,7 @@ fn calculate_length(s: &String) -> usize {
 
 上面的代码中，s就是s1的引用，引用的可以理解成某种“二次指针”，如下图：
 
-![008vxvgGly1h7oguc3oi7j30ul0awmxv](../rust_in_action/pics/008vxvgGly1h7oguc3oi7j30ul0awmxv-8471610.jpg)
+![008vxvgGly1h7oguc3oi7j30ul0awmxv](pics/008vxvgGly1h7oguc3oi7j30ul0awmxv.jpg)
 
 
 
