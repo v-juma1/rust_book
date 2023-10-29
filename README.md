@@ -383,26 +383,87 @@ fn calculate_length(s: &String) -> usize {
 
 ## 4、结构体struct
 
-- struct规则
-  - 为每个字段指定具体值
-  - 字段是无序的
+- struct初始化
+  - 为每个字段指定具体值，字段是无序的
   - 实例化时必须为所有字段赋值
-  - 通过`点(dot)`标记法获取具体字段的值和赋值
   - 使用 `let` 默认示例化的 struct 是不可变（immutable），可以通过 `let mut` 声明可变（mutable）的 struct
-  - 可变的 struct 实例，所有字段都是可变的
-  - struct 可以作为函数的返回值，如 `-> City`
+  - 可变的 struct 实例，所有字段都是可变的，不允许某个字段可变，其他不可变的情况
   - 简写规则：若字段名和字段值对应变量名相同时，可以使用字段名初始化
+  
 - struct更新
   - 基于某个 struct 实例创建一个新的 struct 实例时，可以在新的实例中使用 `..实例名` 来替代不需要修改的字段，需要修改的字段需要单独指定
+  
+  - ```rust
+    pub struct User {
+        pub username: String,
+        pub password: String,
+        pub sign: u32,
+        pub active: bool,
+    }
+    pub fn run() {
+        let u1 = User {
+            username: String::from("u1"),
+            password: String::from("u1_pass"),
+            sign: 10,
+            active: false,
+        };
+    
+        let u2 = User {
+            username: String::from("u2"),
+            password: String::from("u2_pass"),
+            //更新struct的语法糖
+            ..u1
+        };
+    }
+    ```
+  
+  
+  
+- Tuple struct
+  
+  - 可定义类似 tuple 的 struct，叫做 tuple struct
+  
+  - Tuple struct 整体有个名，但里面的元素没有名
+  
+  - 适用场景：想给整个 tuple 起名，并让它不同于其它 tuple，而且又不需要给每个元素起名定义 
+  
+  - tuple struct：使用 struct 关键字，后边是名字，以及里面元素的类型，例子：
+  
+    ```rust
+    struct Color(i32, i32, i32);
+    struct Point(i32, i32, i32);
+    
+    fn main() {
+        //注意：black 和 origin 是不同的类型，是不同 tuple struct 的实例
+        let black = Color(0, 0, 0);
+        let origin = Point(0, 0, 0);
+    }
+    ```
+  
+  
+  
+  
+  
+- Unit-Like Struct (没有任何字段)
+  
+  - 可以定义没有任何字段的 struct，叫做 Unit-Like struct（因为与()，单元类型类似）
+  - 适用于需要在某个类型上实现某个 trait，但是在里面又没有想要存储的数据
+  
+  
+  
 - struct数据所有权
   - 若实例拥有 struct 里所有字段的所有权，则 struct 拥有所有权
-  - 若存在引用（如`&str`）类型的字段，则需要使用`生命周期（lifetime specifier）？`
+  - 若存在引用（如`&str`）类型的字段，则需要使用`生命周期（lifetime specifier）`
     - 若生命周期保证struct实例是有效的，则里面的引用也是有效的
     - 若struct里面存储引用，且不使用生命周期，则会报错
+    
+    
+
 - struct方法
   - 在 `impl` 块里定义方法，一个 struct 可以有多个 `impl` 块
   - struct 方法的第一个参数是 `&self`，也可以获得其所有权和可变借用
   - 结构体实例使用 `.` 方法调用方法
+
 - struct关联函数:在 `impl` 块里定义的函数，第一个参数不是 `self
   - 作用：通常用于构造器
   - 调用：结构体名称::函数名()
@@ -410,7 +471,7 @@ fn calculate_length(s: &String) -> usize {
       - 关联函数
       - 模块创建的命名空间
   - 示例：String::from()
-  
+
   
 
 ## 5、枚举和模式匹配
@@ -427,7 +488,191 @@ fn calculate_length(s: &String) -> usize {
     - 不需要额外使用 struct 就能存储值
     - 每个变体可以拥有不同的类型和关联的数据量
     
+  
+- 同一个枚举的各个枚举值，可以有的附加数据，有的不附加数据；也可以为枚举定义方法：
+  
+  - ```rust
+    #[derive(Debug)]
+    enum Message {
+        Quit,
+        Move { x: i32, y: i32 },
+        Write(String),
+        ChangeColor(i32, i32, i32),
+    }
+    impl Message {
+        fn call(&self) {
+            println!("{:?}", self)
+        }
+    }
     
+    fn main() {
+        let g = Message::Quit;
+        let m = Message::Move { x: 12, y: 24 };
+        let w = Message::Write(String::from("Hello"));
+        let c = Message::ChangeColor(0, 255, 255);
+    
+        g.call();
+        m.call();
+        w.call();
+        c.call();
+    }
+    
+    ```
+  
+
+
+
+- Option枚举
+
+  - Rust 没有 Null
+
+    其它语言中:
+
+    Null 是一个值，它表示“没有值”
+
+    一个变量可以处于两种状态:空值 (null)、非空
+
+    Null 引用：Billion Dollar Mistake
+
+    
+
+  - **Null 的问题在于**：当你尝试像使用非 Null 值那样使用 Null 值的时候，就会引起某种错误
+  - Null 的概念还是有用的：因某种原因而变为无效或缺失的值
+
+- Rust 处理Null值的方法：使用Option< T>枚举
+
+  - ```rust
+    fn main() {
+        let num1 = Some(5);
+        let a_string = Some("A String");
+        let some_string: Option<i32> = None;
+    }
+    ```
+
+    
+
+- Option< T> 比 Null 好在哪?
+  - Option< T> 和T是不同的类型，不可以把 Option< T> 直接当成T
+  - 若想使用 Option< T> 中的 T，必须将它转换为 T
+  - 因此避免了Null值泛滥的情况
+
+
+
+- match 通过模式匹配捕获枚举绑定的值
+
+  - 使用match 必须匹配枚举的所有分支，对于不需要关心的模式可以用通配符下划线 _ 表示
+
+  - ```rust
+    #[derive(Debug)]
+    enum UsState {
+        Alabama,
+        Alaska,
+    }
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter(UsState),
+    }
+    fn value_in_cents(coin: Coin) -> u8 {
+        match coin {
+            Coin::Penny => {
+                println!("penny!");
+                1
+            }
+    
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+          	
+          	//这个分支捕获绑定的值state
+            Coin::Quarter(state) => {
+                println!("State quarter from {:?}!", state);
+                25
+            }
+        }
+    }
+    
+    fn main() {
+        let c = Coin::Quarter(UsState::Alaska);
+        println!("{}", value_in_cents(c));
+    }
+    
+    ```
+
+    
+
+- match 处理Option 枚举
+
+  - ```rust
+    fn main() {
+        let five = Some(5);
+        let null: Option<i32> = None;
+    
+        let r1 = plus_five(five);
+        let r2 = plus_five(null);
+    
+        println!("{:?}", r1);
+        println!("{:?}", r2);
+    }
+    
+    fn plus_five(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
+    
+    ```
+
+  
+
+- if let 控制流
+
+  - 处理只关心一种匹配，而忽略其他匹配的情况：
+
+  - ```rust
+    fn main() {
+        let v = Some(3_u8);
+    
+        //只关心一个分支
+        match v {
+            Some(3) => println!("three"),
+            _ => (),
+        }
+    
+        //if let用更简介的方式处理只关系一个分支的情况
+        if let Some(3) = v {
+            println!("three")
+        }
+    }
+    
+    ```
+
+  
+
+- if let 也可以搭配else使用：
+
+  - ```rust
+    fn main() {
+        let v = Some(1_u8);
+    
+        //只关心一个分支
+        match v {
+            Some(3) => println!("three"),
+            _ => (),
+        }
+    
+        //if let用更简介的方式处理只关系一个分支的情况
+        if let Some(3) = v {
+            println!("three")
+        } else {
+            println!("else")
+        }
+    }
+    
+    ```
+
+
 
 ## 6、代码组织Package, Crate, Module
 
@@ -455,7 +700,68 @@ fn calculate_length(s: &String) -> usize {
     - 只能包含0-1个Library Crate
     - 但是可以包含任意数量的binary crate
     - 但至少包含一个crate（library或者binary）
+    
+    
+  
+- 路径 (Path)
 
+  为了在 Rust 的模块中找到某个条目，需要使用路径，路径的两种形式:
+  
+  - 绝对路径：从 crate root 开始，使用 crate 名 或 字面值 crate
+- 相对路径：从当前模块开始，使用 self，super 或当前模块的标识符
+  - 路径至少由一个标识符组成，标识符之间使用 **::**
+  
+  
+
+- 私有边界(privacy boundary)
+
+  模块不仅可以组织代码，还可以定义私有边界，如果想把函数或 struct 等设为私有，可以将它放到某个模块中。
+
+  - Rust 中所有的条目 (函数，方法，struct，enum，模块，常量) 默认是私有的
+  - 父级模块无法访问子模块中的私有条目
+  - 子模块里可以使用所有祖先模块中的条目
+
+  
+
+- pub struct
+
+  pub 放在 struct 前：
+
+  - struct 是公共的
+  - struct 的字段默认是私有的
+  - **struct 的字段需要单独设置 pub 来变成共有**
+
+  
+
+- pub enum
+
+  pub 放在 enum 前:
+
+  - enum 是公共的
+  - enum 的变体也都是公共的
+
+
+
+- use 关键字
+  - 可以使用 use 关键字将路径导入到作用域内：
+    - 导入后的模块仍遵循私有性规则，也就是说private的内容即使用use引入也不能访问。
+    - 可以使用 use 来指定**相对路径**
+    - 也可以使用 use 来指定**绝对路径**
+    - 同名的模块可以用 **as** 关键字指定别名
+
+
+
+- **使用 pub use 重新导出**
+  - 使用 use 将路径 (名称)导入到作用域内后，该名称在此作用域内是私有的，作用域外部无法访问。
+  - 可以在use 前加上关键字pub ，即pub use进行重导出，重导出有两个效果：
+    - 将条目引入作用域
+    - 该条目可以被外部代码引入到它们的作用域
+
+
+
+- **使用mod将模块拆分成文件**
+  - 模块定义时，如果模块名后边是 “**;**”，而不是代码块，Rust 会从与模块同名的文件中加载内容
+  - 随着模块逐渐变大，该技术让你可以把模块的内容移动到其它文件中
 
 
 

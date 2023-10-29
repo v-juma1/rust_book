@@ -2,7 +2,9 @@
 mod rectangle_demo;
 //mod struct_demo;
 
+mod word_counter;
 fn main() {
     //struct_demo::run_demo();
     rectangle_demo::run_demo();
+    //word_counter::run();
 }
