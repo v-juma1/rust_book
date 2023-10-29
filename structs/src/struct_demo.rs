@@ -51,8 +51,7 @@ pub fn run_demo() {
     username:{}
     password:{}
     sign:{}
-    active:{}
-    ",
+    active:{}",
         u1.username, u1.password, u1.sign, u1.active
     );
 

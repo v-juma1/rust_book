@@ -384,8 +384,7 @@ fn calculate_length(s: &String) -> usize {
 ## 4、结构体struct
 
 - struct初始化
-  - 为每个字段指定具体值，字段是无序的
-  - 实例化时必须为所有字段赋值
+  - 实例化时必须为所有字段赋值，字段是无序的
   - 使用 `let` 默认示例化的 struct 是不可变（immutable），可以通过 `let mut` 声明可变（mutable）的 struct
   - 可变的 struct 实例，所有字段都是可变的，不允许某个字段可变，其他不可变的情况
   - 简写规则：若字段名和字段值对应变量名相同时，可以使用字段名初始化

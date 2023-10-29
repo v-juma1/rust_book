@@ -19,12 +19,12 @@ fn show_enum() {
     //给枚举赋值并实例化struct
     let v4_1 = IPAddr {
         kind: IPKind::Ipv4,
-        address: String::from("192.168.89.9"),
+        address: String::from("111.111.11.1"),
     };
 
     let v6_1 = IPAddr {
         kind: IPKind::Ipv6,
-        address: String::from("2001:0db8:85a3:08d3:1319:8a2e:0370:7344"),
+        address: String::from("2001:2001:2001:2001:2001:2001:2001:2001"),
     };
 
     println!("{:#?}", v4_1)
