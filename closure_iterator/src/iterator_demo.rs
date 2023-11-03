@@ -38,12 +38,12 @@ pub fn main() {
     //惰性的，调用消耗性方法，才能生效
     let m1 = v1.iter().map(|&x| x + 1);
     let v2: Vec<i32> = m1.collect();
-    println!("v2:{:#?}", v2);
+    println!("v2:{:?}", v2);
 
     //注意filter 和上面map的细微区别
     let m2 = v1.iter().filter(|&&x| x % 2 == 0);
     let v3: Vec<&i32> = m2.collect();
-    println!("v3:{:#?}", v3);
+    println!("v3:{:?}", v3);
 }
 
 #[test]

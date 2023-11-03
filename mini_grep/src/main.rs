@@ -1,9 +1,7 @@
 use mini_grep;
 use std::{env, process};
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let config = mini_grep::Config::new(&args).unwrap_or_else(|err| {
+    let config = mini_grep::Config::new(env::args()).unwrap_or_else(|err| {
         eprintln!("解析参数发生错误：{}", err);
         process::exit(1);
     });

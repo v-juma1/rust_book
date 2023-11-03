@@ -1,4 +1,4 @@
-use std::{error::Error, fs};
+use std::{env, error::Error, fs};
 
 #[derive(Debug)]
 pub struct Config {
@@ -8,33 +8,32 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("\
-            参数太少：\n\
-            参数格式为：query file case_sensitive(默认可省略，即不区分大小写)");
-        } else if args.len() == 3 {
-            Ok(Config {
-                query_string: args[1].clone(),
-                file_name: args[2].clone(),
-                case_sensitive: false,
-            })
-        } else if args.len() == 4 {
-            if args[3] == "case_sensitive" {
+    pub fn new(mut args: std::env::Args) -> Result<Config, &'static str> {
+        match args.len() {
+            3 | 4 => {
+                args.next();
+
+                let query_string = match args.next() {
+                    Some(arg) => arg,
+                    None => return Err("读取查找的目标字符失败！"),
+                };
+
+                let file_name = match args.next() {
+                    Some(arg) => arg,
+                    None => return Err("读取文件路径失败！"),
+                };
+
+                let case_sensitive: bool = env::var("case_sensitive").is_err();
+
                 Ok(Config {
-                    query_string: args[1].clone(),
-                    file_name: args[2].clone(),
-                    case_sensitive: true,
+                    query_string,
+                    file_name,
+                    case_sensitive,
                 })
-            } else {
-                return Err("\
-                参数错误：\n\
-                参数格式为：query file case_sensitive(默认可省略，即不区分大小写)");
             }
-        } else {
-            return Err("\
-            参数过多：\n\
-            参数格式为：query file case_sensitive(默认可省略，即不区分大小写)");
+            _ => return Err(
+                "参数错误，正确的参数格式为：query file case_sensitive(默认可省略，即不区分大小写)",
+            ),
         }
     }
 }
@@ -55,26 +54,18 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    let mut result = Vec::new();
-    for line in content.lines() {
-        if line.contains(query) {
-            result.push(line);
-        }
-    }
-
-    result
+    content
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 //不区分大小写
 pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    let mut result = Vec::new();
-    let low_query = query.to_lowercase();
-    for line in content.lines() {
-        if line.to_lowercase().contains(&low_query) {
-            result.push(line)
-        }
-    }
-    result
+    content
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
+        .collect()
 }
 
 #[cfg(test)]

@@ -1,6 +1,10 @@
 use std::{
     collections::HashMap,
-    fmt::{write, Display},
+    env,
+    fmt::Display,
+    fs::File,
+    io::{BufRead, BufReader},
+    path::Path,
 };
 
 #[derive(Debug)]
@@ -10,7 +14,14 @@ impl WordCounter {
     fn new() -> WordCounter {
         WordCounter(HashMap::new())
     }
-    fn count() {}
+    fn count(&mut self, line: &str) {
+        for word in line.split(" ").collect::<Vec<&str>>() {
+            self.0
+                .entry(word.to_string())
+                .and_modify(|counter| *counter += 1)
+                .or_insert(1);
+        }
+    }
 }
 
 impl Display for WordCounter {
@@ -26,6 +37,18 @@ impl Display for WordCounter {
 }
 
 pub fn run() {
-    let w = WordCounter::new();
+    let mut w = WordCounter::new();
+    let args: Vec<String> = env::args().collect();
+    match args.len() {
+        2 => (),
+        _ => panic!("参数错误！"),
+    }
+    let path = Path::new(&args[1]);
+    let f = File::open(path).expect("file does not exist!");
+    let reader: BufReader<File> = BufReader::new(f);
+    for line in reader.lines() {
+        w.count(&line.expect("can not read the file:{}"))
+    }
+
     println!("{}", w)
 }

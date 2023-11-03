@@ -2,13 +2,6 @@
 #![allow(unused_variables)]
 
 use std::{collections::HashMap, thread, time::Duration};
-pub fn main() {
-    let a = 10;
-    let b = 6;
-    really_work(a, b);
-
-    move_test();
-}
 
 //测试move关键字的函数
 fn move_test() {
@@ -74,6 +67,7 @@ fn expensive_caculate(a: u32) -> u32 {
 
 fn really_work(a: u32, b: u32) {
     //声明一个闭包，只在需要结果的地方调用expensive_caculate函数
+    //注意这个变量closure_caculate并不是保存闭包的执行结果，而是保存闭包的定义
     let closure_caculate = |a| {
         println!("cacuating ..........");
         thread::sleep(Duration::from_secs(3));
@@ -96,4 +90,12 @@ fn really_work(a: u32, b: u32) {
             println!("在a>=25对的情况下运行：{}", casher.get_value(a + 3));
         }
     }
+}
+
+pub fn main() {
+    let a = 10;
+    let b = 6;
+    really_work(a, b);
+
+    move_test();
 }

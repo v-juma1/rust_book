@@ -505,15 +505,15 @@ fn calculate_length(s: &String) -> usize {
     }
     
     fn main() {
-        let g = Message::Quit;
-        let m = Message::Move { x: 12, y: 24 };
-        let w = Message::Write(String::from("Hello"));
-        let c = Message::ChangeColor(0, 255, 255);
+        let a = Message::Quit;
+        let b = Message::Move { x: 12, y: 24 };
+        let c = Message::Write(String::from("Hello"));
+        let d = Message::ChangeColor(0, 255, 255);
     
-        g.call();
-        m.call();
-        w.call();
+        a.call();
+        b.call();
         c.call();
+        d.call();
     }
     
     ```
@@ -551,9 +551,9 @@ fn calculate_length(s: &String) -> usize {
     
 
 - Option< T> 比 Null 好在哪?
-  - Option< T> 和T是不同的类型，不可以把 Option< T> 直接当成T
-  - 若想使用 Option< T> 中的 T，必须将它转换为 T
-  - 因此避免了Null值泛滥的情况
+  - Option< T> 和T是不同的类型，不可以把 Option< T> 直接当成T。
+  - 若想使用 Option< T> 中的 T，必须将它转换为 T。
+  - 因此避免了Null值泛滥的情况。
 
 
 
@@ -766,6 +766,10 @@ fn calculate_length(s: &String) -> usize {
 
 ## 7、Common Collections常见集合
 
+- Vevtor
+
+  暂无
+
 - String类型的含义，Rust 有三种看待字符串的方式：
 
   - Bytes：字节
@@ -910,12 +914,22 @@ fn calculate_length(s: &String) -> usize {
 
 ## 12、迭代器格闭包 Iterators and Closures
 
+- 什么是闭包 (closure）
+  
+  闭包：可以捕获其所在环境的匿名函数
+  
+  - 可以保存为变量、作为参数
+  - 可在一个地方创建闭包，然后在另一个上下文中调用闭包来完成运算
+  - 可从其定义的作用城捕获值
+  
 - Fn Trait
+  
   - Fn Trait由标准库提供
   - 所有的闭包都至少实现了一下trait之一：
     - Fn
     - FnMut
     - FnOnce
+  
 - 闭包从所在环境中捕获值的方式
   - 与函数获得参数的三种方式一样：
     - 取得所有权：FnOnce
@@ -925,12 +939,22 @@ fn calculate_length(s: &String) -> usize {
     - 所有的闭包都实现了FnOnce
     - 没有移动的捕获变量实现了FnMut
     - 无需可访问捕获变量的闭包实现了Fn
+  - 它们之间的层级关系Fn{FnMut{FnOnce}}：所有实现了Fn的都实现了FnMut，所有实现了FnMut的都实现了FnOnce
+  
+- move关键字
+
+  - 在参数列表前使用 move 关键字，可以强制闭包取得它所使用的环境值的所有权
+  - 当将闭包传递给新线程以移动数据使其归新线程所有时，这种做法最为有用。
+
+- 闭包的最佳实践
+
+  - 当指定 Fn trait bound 之一时，首先用 Fn，基于闭包体里的情况，如果需要FnOnce 或 FnMut，编译器会再告诉你。
+
 - 几个迭代方法：
+
   - iter方法：在不可变引用上常见迭代器
   - into_iter方法：创建的迭代器会获得所有权
   - iter_mut方法：迭代可变的引用
-
-
 
 
 
