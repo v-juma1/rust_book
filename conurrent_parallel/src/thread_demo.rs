@@ -8,7 +8,7 @@ pub fn main() {
 
     //子线程执行
     //使用move关键字在线程间移交数据所有权
-    let handle = thread::spawn(move || {
+    let handle: thread::JoinHandle<()> = thread::spawn(move || {
         for i in 1..10 {
             println!("子线程输出：{}", i);
             println!("子线程输出：{:?}", v);
