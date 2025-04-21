@@ -39,6 +39,7 @@ fn month_of_season(s: &Season) {
 
 //只关心一种匹配，而忽略其他匹配的情况也可以用if let来处理
 fn month_of_season_2(s: &Season) {
+    //if let 匹配的模式 = 匹配的变量 {匹配的操作} else {其他操作} , else {其他操作}部分可以省略
     if let Season::Spring(_) = s {
         println!("the Season is Spring");
     } else {

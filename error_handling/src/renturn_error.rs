@@ -38,3 +38,8 @@ pub fn read_data_from_file_v3() -> Result<String, Error> {
     File::open("test.txt")?.read_to_string(&mut s)?;
     Ok(s)
 }
+
+//标准库提供了函数对上面的方式进行了封装，进一步简化
+pub fn read_data_from_file_v4() -> Result<String, Error> {
+    std::fs::read_to_string("test.txt")
+}
